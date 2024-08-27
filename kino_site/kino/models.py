@@ -114,7 +114,6 @@ class Cart(models.Model):
         return f'{self.user}'
 
 
-
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
