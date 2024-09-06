@@ -111,7 +111,6 @@ class MovieSerializer(serializers.ModelSerializer):
     country = CountrySerializer(many=True, read_only=True)
     ratings = RatingSimpleSerializer(many=True, read_only=True)
     reviews = CommentSimpleSerializer(many=True, read_only=True)
-    average_rating = serializers.SerializerMethodField()
     year = serializers.DateField(format=('%Y'))
     director = DirectorSimpleSerializer(many=True, read_only=True)
     janre = JanreSerializer(many=True, read_only=True)
@@ -143,6 +142,7 @@ class MovieListSerializer(serializers.ModelSerializer):
 class CartItemSerializer(serializers.ModelSerializer):
     movie = MovieSerializer(many=True, read_only=True)
     movie_id = serializers.PrimaryKeyRelatedField(queryset=Movie.objects.all(), write_only=True, source='movie')
+
     class Meta:
         model = CartItem
         fields = '__all__'
